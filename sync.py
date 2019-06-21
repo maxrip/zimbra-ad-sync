@@ -73,7 +73,7 @@ try:
         except:
             continue
         try:
-            aliases = vals['ADAliasFeild'][0].decode('UTF-8').split(',')
+            aliases = vals[ADAliasFeild][0].decode('UTF-8').split(',')
             aliases = ['%s@%s' % (i.strip(),ADdomain) for i in aliases]
         except:
             aliases = []
