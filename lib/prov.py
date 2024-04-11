@@ -35,13 +35,14 @@ class Cli:
         return "rdlm %s %s" % (dl,user)
 
 
-    def executeCarbonio(syscalls,sysCallLenght):
-        for cmd in  syscalls:
-            os.system("%s %s" %(Cli.pathtozmprov,cmd))
-#        while len(syscalls) > sysCallLenght:
-#            pice = syscalls[:sysCallLenght]
-#            print('echo "%s" | %s' % ('\n'.join(pice),Cli.pathtozmprov))
-#            os.system('echo "%s" | %s' % ('\n'.join(pice),Cli.pathtozmprov))
-#            syscalls   = syscalls[sysCallLenght:]
-#        print('echo "%s" | %s' % ('\n'.join(syscalls),Cli.pathtozmprov))
-#        os.system('echo "%s" | %s' % ('\n'.join(syscalls),Cli.pathtozmprov))
+    def executeCarbonio(syscalls,sysCallLenght,cmdBulk = False):
+        print(cmdBulk)
+        if cmdBulk :
+            while len(syscalls) > sysCallLenght:
+                pice = syscalls[:sysCallLenght]
+                os.system('echo "%s" | %s' % ('\n'.join(pice),Cli.pathtozmprov))
+                syscalls   = syscalls[sysCallLenght:]
+            os.system('echo "%s" | %s' % ('\n'.join(syscalls),Cli.pathtozmprov))
+        else:
+            for cmd in  syscalls:
+                os.system("%s %s" %(Cli.pathtozmprov,cmd))

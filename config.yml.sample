@@ -2,6 +2,9 @@ site: site.com
 loglevel: debug
 executeCarbonio: true
 sysCallLenght: 20
+#cmdBulk use carbonio version >  24.3.0 and use charset not ASCII
+cmdBulk:yes
+
 remote:
     url: "ldap://dc1.site.com"
     basedn: "cn=accounts,dc=site,dc=com"

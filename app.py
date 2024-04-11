@@ -24,6 +24,6 @@ if len(diff.syscalls) > 0:
     logger.debug('%s',diff.syscalls)
     if config['executeCarbonio']: 
         try:
-            Cli.executeCarbonio(diff.syscalls,config['sysCallLenght'])
+            Cli.executeCarbonio(diff.syscalls,config['sysCallLenght'],config['cmdBulk'])
         except Exception as err:
             logger.error('execute cli error: %s',err)
