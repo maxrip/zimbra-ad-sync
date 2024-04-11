@@ -1,0 +1,48 @@
+site: site.com
+loglevel: debug
+executeCarbonio: true
+sysCallLenght: 20
+remote:
+    url: "ldap://dc1.site.com"
+    basedn: "cn=accounts,dc=site,dc=com"
+    authdn: "uid=sso_auth_service,cn=users,cn=accounts,dc=site,dc=com"
+    authpassword: "SecretPassword"
+    filter: "(&(&(objectClass=inetOrgPerson)(objectClass=posixAccount))(&(memberOf=cn=email-user,cn=groups,cn=accounts,dc=site,dc=com))(|(nsAccountLock=FALSE)(!(nsAccountLock=*))))"
+    dlfilter: "(&(rbtaou=email-dl)(objectClass=ipausergroup)(objectClass=ipaobject))"
+    dlfilter-attr: "member"
+    rolesfilter: 
+    aliasAttribute: proxyAddresses
+    sn: uid
+    #AD   - sAMAccountName
+    #LDAP - sn
+    attrmapper:
+        sn: sn
+        description: description
+        displayName: displayName
+        givenName: givenName
+        initials: rbtamiddlename
+        telephoneNumber: telephoneNumber
+        mobile: mobile
+        facsimileTelephoneNumber: employeeNumber
+        title: title
+local:
+    url: "ldap://mail.site.com:389"
+    basedn: "dc=site,dc=com"
+    authdn: "uid=zimbra,cn=admins,cn=zimbra"
+    authpassword: "NNxzRpwU"
+    filter: "(&(&(objectClass=zimbraAccount)(objectClass=inetOrgPerson))(&(!(uid=zextras))(!(uid=galsync.*))(!(uid=ham.*))(!(uid=spam.*))(!(uid=virus-quarantine.*))))"
+    dlfilter: "(&(&(objectClass=zimbraDistributionList)(objectClass=zimbraMailRecipient)))"
+    attrmapper:
+        - sn
+        - description
+        - displayName
+        - givenName
+        - initials
+        - telephoneNumber
+        - mobile
+        - facsimileTelephoneNumber
+        - title
+    ignoringAccount:
+        - no-reply
+    disabledNotFoundUser: true
+    
